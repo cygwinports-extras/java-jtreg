@@ -1,0 +1,21 @@
+JAVA_CLASSPATH="javatest.jar:jh.jar:jhall.jar:junit4.jar"
+inherit ant
+
+DESCRIPTION="OpenJDK regression test harness"
+HOMEPAGE="http://openjdk.java.net/jtreg/"
+SRC_URI="http://www.java.net/download/openjdk/jtreg/promoted/${PV#*_}/jtreg-${PV%_*}-src-${PV#*_}_21_may_2010.zip"
+SRC_DIR=.
+
+ANT_BUILD_XML="make/build.xml"
+ANT_BUILD_TARGETS="jar-jtreg"
+ANT_BUILD_ARGS="
+	-Djavatest.jar=${JAVA_DIR}/javatest.jar
+	-Djhall.jar=${JAVA_DIR}/jhall.jar
+	-Djh.jar=${JAVA_DIR}/jh.jar
+	-Djunit.jar=${JAVA_DIR}/junit4.jar
+"
+ANT_INSTALL_JARS="dist/jtreg/lib/jtreg.jar"
+ANT_INSTALL_WRAPPERS="
+	jtdiff,jtreg.jar,com.sun.javatest.diff.Main
+	jtreg,jtreg.jar,com.sun.javatest.regtest.Main
+"
